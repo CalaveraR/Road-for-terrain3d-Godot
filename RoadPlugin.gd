@@ -1,18 +1,18 @@
-# RoadPlugin.gd (controlador geral)
-extends Node3D
+# addons/road_tool/RoadPlugin.gd
+tool
+extends EditorPlugin
 
-var spline_manager
-var tile_manager
-var terrain_deformer
+var spline_gui
 
-func _ready():
-    spline_manager = load("res://road_plugin/spline_manager.gd").new()
+func _enter_tree():
+    # Carrega a interface do editor
+    spline_gui = preload("res://addons/road_tool/gui/SplineGUI.tscn").instantiate()
+    add_control_to_dock(DOCK_SLOT_RIGHT_UL, spline_gui)
+    
+    var controller = spline_gui.get_node("SplineGUIController")
+    var spline_manager = preload("res://addons/road_tool/spline/SplineManager.gd").new()
     add_child(spline_manager)
+    controller.init(spline_manager)
 
-    tile_manager = load("res://road_plugin/tile_manager.gd").new()
-    add_child(tile_manager)
-
-    terrain_deformer = load("res://road_plugin/terrain_deformer.gd").new()
-    add_child(terrain_deformer)
-
-    # Conectar sinais e configurar comunicação entre módulos
+func _exit_tree():
+    remove_control_from_docks(spline_gui)
