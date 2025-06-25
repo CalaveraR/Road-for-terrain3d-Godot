@@ -1,0 +1,20 @@
+addons/
+└── road_tool/
+    ├── RoadPlugin.gd                # Script principal do editor
+    ├── plugin.cfg                   # Ativação no Editor
+    ├── gui/
+    │   ├── SplineGUI.tscn
+    │   └── SplineGUIController.gd
+    ├── spline/
+    │   ├── SplineManager.gd
+    │   ├── SplineCore.gd            # Cálculo e controle de curva
+    │   └── GizmoEditor.gd           # Manipulação visual
+    ├── mesh/
+    │   ├── RoadTileManager.gd       # Controlador de meshes de estrada
+    │   ├── RoadMeshInstance.gd      # Repetição de tiles
+    ├── terrain/
+    │   └── TerrainDeformer.gd       # Ajuste do Terrain3D
+    ├── save/
+    │   └── RoadMapSaver.gd          # Exportação/importação
+    └── util/
+        └── RoadUtils.gd             # Funções auxiliares (json, normal, etc)
